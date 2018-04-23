@@ -6,6 +6,10 @@
   "scripts": {
     "build": "babel src --out-dir ."
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mottox2/gatsby-source-esa.git"
+  },
   "keywords": ["gatsby", "gatsby-plugin", "gatsby-source-gatsby", "esa"],
   "author": "mottox2",
   "license": "MIT",
@@ -16,5 +20,6 @@
   "dependencies": {
     "crypto": "^1.0.1",
     "frisbee": "^1.6.4"
-  }
+  },
+  "homepage": "https://github.com/mottox2/gatsby-source-esa"
 }
