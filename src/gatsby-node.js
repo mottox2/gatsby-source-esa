@@ -1,7 +1,7 @@
 import Frisbee from 'frisbee';
 import crypto from 'crypto'
 
-exports.sourceNodes = async ({ boundActionCreators, accessToken, teamName, targetCategory }) => {
+exports.sourceNodes = async ({ boundActionCreators }, { accessToken, teamName, targetCategory }) => {
   const createNodeFromPost = (post) => {
     const hashId = crypto.createHash(`md5`).update(post.number.toString()).digest('hex')
     const baseNode = {
@@ -20,11 +20,11 @@ exports.sourceNodes = async ({ boundActionCreators, accessToken, teamName, targe
   }
 
   if (!accessToken) {
-    throw 'You neet to set an accessToken.'
+    throw 'You need to set an accessToken.'
   }
 
   if (!teamName) {
-    throw 'You neet to set an teamName.'
+    throw 'You need to set an teamName.'
   }
 
   const api = new Frisbee({
