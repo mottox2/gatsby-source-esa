@@ -17,14 +17,17 @@ module.exports = {
       options: {
         accessToken: `your_personal_access_token`,
         teamName: `your_team_name`,
-        targetCategory: ``
+        // Search queary (optional)
+        // See : https://docs.esa.io/posts/104
+        // Example : 'in:public'  or 'wip:false in:public'
+        q: ``
       }
     }
   ]
 }
 ```
 
-## How to Query
+## How to query
 
 ```graphql
 {

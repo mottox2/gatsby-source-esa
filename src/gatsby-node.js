@@ -1,9 +1,12 @@
-import Frisbee from 'frisbee';
+import Frisbee from 'frisbee'
 import crypto from 'crypto'
 
-exports.sourceNodes = async ({ boundActionCreators }, { accessToken, teamName, targetCategory }) => {
-  const createNodeFromPost = (post) => {
-    const hashId = crypto.createHash(`md5`).update(post.number.toString()).digest('hex')
+exports.sourceNodes = async ({ boundActionCreators }, { accessToken, teamName, q = '' }) => {
+  const createNodeFromPost = post => {
+    const hashId = crypto
+      .createHash(`md5`)
+      .update(post.number.toString())
+      .digest('hex')
     const baseNode = {
       id: hashId,
       children: [],
@@ -14,9 +17,7 @@ exports.sourceNodes = async ({ boundActionCreators }, { accessToken, teamName, t
       }
     }
 
-    boundActionCreators.createNode(
-      Object.assign({}, baseNode, post)
-    )
+    boundActionCreators.createNode(Object.assign({}, baseNode, post))
   }
 
   if (!accessToken) {
@@ -32,19 +33,17 @@ exports.sourceNodes = async ({ boundActionCreators }, { accessToken, teamName, t
   })
 
   const { body } = await api.jwt(accessToken).get(`/v1/teams/${teamName}/posts`, {
-    body: {
-      q: `in:${targetCategory}`,
-    }
+    body: { q }
   })
 
   body.posts.forEach(post => createNodeFromPost(post))
 
   let next_page = body.next_page
-  while ( next_page ) {
+  while (next_page) {
     const { body } = await api.jwt(accessToken).get(`/v1/teams/${teamName}/posts`, {
       body: {
-        q: `in:${targetCategory}`,
-        page: next_page,
+        q,
+        page: next_page
       }
     })
 
