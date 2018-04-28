@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-esa",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "Gatsby source plugin for building websites using esa.io as a data source.",
   "main": "gatsby-node.js",
   "scripts": {
