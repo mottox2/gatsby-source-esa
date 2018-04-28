@@ -15,8 +15,10 @@ module.exports = {
     {
       resolve: `gatsby-source-esa`,
       options: {
-        accessToken: `your_personal_access_token`,
-        teamName: `your_team_name`,
+        // You get acess token from https://[YOUR_TEAM_NAME].esa.io/user/applications.
+        // You must be owner role.
+        accessToken: `YOUR_PERSONAL_ACCESS_TOKEN`,
+        teamName: `YOUR_TEAM_NAME`,
         // Search queary (optional)
         // See : https://docs.esa.io/posts/104
         // Example : 'in:public'  or 'wip:false in:public'
