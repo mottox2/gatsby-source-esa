@@ -15,12 +15,12 @@ module.exports = {
     {
       resolve: `gatsby-source-esa`,
       options: {
-        // You get acess token from https://[YOUR_TEAM_NAME].esa.io/user/applications.
+        // You can get an acess token from https://[YOUR_TEAM_NAME].esa.io/user/applications.
         // You must be owner role.
         accessToken: `YOUR_PERSONAL_ACCESS_TOKEN`,
         teamName: `YOUR_TEAM_NAME`,
         // Search queary (optional)
-        // See : https://docs.esa.io/posts/104
+        // See :y https://docs.esa.io/posts/104
         // Example : 'in:public'  or 'wip:false in:public'
         q: ``
       }
