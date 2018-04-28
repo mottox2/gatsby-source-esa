@@ -18,7 +18,6 @@
     "babel-preset-es2015": "^6.24.1"
   },
   "dependencies": {
-    "crypto": "^1.0.1",
     "frisbee": "^1.6.4"
   },
   "homepage": "https://github.com/mottox2/gatsby-source-esa"
