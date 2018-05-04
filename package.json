@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-esa",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Gatsby source plugin for building websites using esa.io as a data source.",
   "main": "gatsby-node.js",
   "scripts": {
@@ -10,7 +10,12 @@
     "type": "git",
     "url": "https://github.com/mottox2/gatsby-source-esa.git"
   },
-  "keywords": ["gatsby", "gatsby-plugin", "gatsby-source-plugin", "esa"],
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "gatsby-source-plugin",
+    "esa"
+  ],
   "author": "mottox2",
   "license": "MIT",
   "devDependencies": {
