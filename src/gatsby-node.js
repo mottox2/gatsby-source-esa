@@ -32,13 +32,7 @@ exports.sourceNodes = async ({ boundActionCreators }, { accessToken, teamName, q
     baseURI: 'https://api.esa.io'
   })
 
-  const { body } = await api.jwt(accessToken).get(`/v1/teams/${teamName}/posts`, {
-    body: { q }
-  })
-
-  body.posts.forEach(post => createNodeFromPost(post))
-
-  let next_page = body.next_page
+  let next_page = 1
   while (next_page) {
     const { body } = await api.jwt(accessToken).get(`/v1/teams/${teamName}/posts`, {
       body: {
