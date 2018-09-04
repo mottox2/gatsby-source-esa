@@ -10,12 +10,18 @@
     "type": "git",
     "url": "https://github.com/mottox2/gatsby-source-esa.git"
   },
-  "keywords": ["gatsby", "gatsby-plugin", "gatsby-source-plugin", "esa"],
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "gatsby-source-plugin",
+    "esa"
+  ],
   "author": "mottox2",
   "license": "MIT",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1"
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0"
   },
   "dependencies": {
     "frisbee": "^1.6.4"
