@@ -1,10 +1,12 @@
 # gatsby-source-esa
 
-Source plugin for pulling data into Gatsby from [esa.io](esa.io) using the [esa.io API](https://docs.esa.io/posts/102).
+[![npm version](https://badge.fury.io/js/gatsby-source-esa.svg)](https://badge.fury.io/js/gatsby-source-esa)
+
+Source plugin for pulling data into Gatsby from [esa.io](https://esa.io) using the [esa.io API](https://docs.esa.io/posts/102).
 
 ## Install
 
-`npm intsall --save gatsby-source-esa`
+`npm install --save gatsby-source-esa`
 
 ## How to use
 
@@ -15,7 +17,7 @@ module.exports = {
     {
       resolve: `gatsby-source-esa`,
       options: {
-        // You can get an acess token from https://[YOUR_TEAM_NAME].esa.io/user/applications.
+        // You can get an access token from https://[YOUR_TEAM_NAME].esa.io/user/applications.
         // You must be owner role.
         accessToken: `YOUR_PERSONAL_ACCESS_TOKEN`,
         teamName: `YOUR_TEAM_NAME`,
