@@ -1,19 +1,26 @@
 import Frisbee from 'frisbee'
 import crypto from 'crypto'
 
-exports.sourceNodes = async ({ boundActionCreators }, { accessToken, teamName, q = '' }) => {
+exports.sourceNodes = async ({
+  boundActionCreators,
+  createNodeId
+}, {
+  accessToken,
+  teamName,
+  q = ''
+}) => {
   const createNodeFromPost = post => {
-    const hashId = crypto
+    const contentDigest = crypto
       .createHash(`md5`)
-      .update(post.number.toString())
+      .update(JSON.stringify(post))
       .digest('hex')
     const baseNode = {
-      id: hashId,
+      id: createNodeId(post.number),
       children: [],
       parent: `__SOURCE__`,
       internal: {
         type: 'EsaPost',
-        contentDigest: hashId
+        contentDigest,
       }
     }
 
@@ -34,7 +41,9 @@ exports.sourceNodes = async ({ boundActionCreators }, { accessToken, teamName, q
 
   let next_page = 1
   while (next_page) {
-    const { body } = await api.jwt(accessToken).get(`/v1/teams/${teamName}/posts`, {
+    const {
+      body
+    } = await api.jwt(accessToken).get(`/v1/teams/${teamName}/posts`, {
       body: {
         q,
         page: next_page
