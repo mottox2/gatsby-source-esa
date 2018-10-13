@@ -7,26 +7,9 @@ exports.sourceNodes = async ({
 }, {
   accessToken,
   teamName,
+  baseCategory = '',
   q = ''
 }) => {
-  const createNodeFromPost = post => {
-    const contentDigest = crypto
-      .createHash(`md5`)
-      .update(JSON.stringify(post))
-      .digest('hex')
-    const baseNode = {
-      id: createNodeId(`EsaPost${post.number}`),
-      children: [],
-      parent: `__SOURCE__`,
-      internal: {
-        type: 'EsaPost',
-        contentDigest,
-      }
-    }
-
-    boundActionCreators.createNode(Object.assign({}, baseNode, post))
-  }
-
   if (!accessToken) {
     throw 'You need to set an accessToken.'
   }
@@ -50,7 +33,25 @@ exports.sourceNodes = async ({
       }
     })
 
-    body.posts.forEach(post => createNodeFromPost(post))
+    body.posts.forEach(post => {
+      const contentDigest = crypto
+        .createHash(`md5`)
+        .update(JSON.stringify(post))
+        .digest('hex')
+
+      boundActionCreators.createNode({
+        ...post,
+        relative_category: post.category.replace(new RegExp(`${baseCategory}/?`), ''),
+        id: createNodeId(`EsaPost${post.number}`),
+        children: [],
+        parent: `__SOURCE__`,
+        internal: {
+          type: 'EsaPost',
+          contentDigest,
+        }
+      })
+    })
+
     next_page = body.next_page
   }
 

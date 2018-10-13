@@ -24,7 +24,14 @@ module.exports = {
         // Search queary (optional)
         // See :y https://docs.esa.io/posts/104
         // Example : 'in:public'  or 'wip:false in:public'
-        q: ``
+        q: '',
+        // Relative Category (optional)
+        // Example: 'public'
+        // {
+        //   category: 'public/gatsby',
+        //   relative_category: 'gatsby',
+        // }
+        baseCategory: ''
       }
     }
   ]
@@ -41,6 +48,10 @@ module.exports = {
         number
         name
         body_md
+        body_html
+        category
+        relative_category
+        tags
       }
     }
   }
