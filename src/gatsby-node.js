@@ -15,7 +15,7 @@ exports.sourceNodes = async ({
       .update(JSON.stringify(post))
       .digest('hex')
     const baseNode = {
-      id: createNodeId(post.number),
+      id: createNodeId(`EsaPost${post.number}`),
       children: [],
       parent: `__SOURCE__`,
       internal: {
