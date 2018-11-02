@@ -20,9 +20,9 @@
   "author": "mottox2",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0"
+    "@babel/cli": "7.0.0",
+    "@babel/core": "7.0.0",
+    "@babel/preset-env": "7.0.0"
   },
   "dependencies": {
     "frisbee": "^1.6.4"
