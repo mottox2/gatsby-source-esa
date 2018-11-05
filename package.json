@@ -25,7 +25,7 @@
     "@babel/preset-env": "7.1.0"
   },
   "dependencies": {
-    "frisbee": "^1.6.4"
+    "frisbee": "^2.0.0"
   },
   "homepage": "https://github.com/mottox2/gatsby-source-esa"
 }
