@@ -1,6 +1,12 @@
 import Frisbee from 'frisbee'
 import crypto from 'crypto'
 
+const createContentDigest = obj =>
+  crypto
+    .createHash(`md5`)
+    .update(JSON.stringify(obj))
+    .digest(`hex`)
+
 exports.sourceNodes = async ({
   boundActionCreators,
   createNodeId
@@ -18,6 +24,8 @@ exports.sourceNodes = async ({
     throw 'You need to set an teamName.'
   }
 
+  const { createNode } = boundActionCreators
+
   const api = new Frisbee({
     baseURI: 'https://api.esa.io'
   })
@@ -34,22 +42,35 @@ exports.sourceNodes = async ({
     })
 
     body.posts.forEach(post => {
-      const contentDigest = crypto
-        .createHash(`md5`)
-        .update(JSON.stringify(post))
-        .digest('hex')
+      const contentDigest = createContentDigest(post)
 
-      boundActionCreators.createNode({
-        ...post,
-        relative_category: post.category.replace(new RegExp(`${baseCategory}/?`), ''),
-        id: createNodeId(`EsaPost${post.number}`),
+      const nodeId = createNodeId(`EsaPost${post.number}`)
+
+      const bodyNode = {
+        id: createNodeId(`EsaPost${post.number}Body`),
+        parent: nodeId,
         children: [],
-        parent: `__SOURCE__`,
+        internal: {
+          type: 'EsaPostBody',
+          mediaType: 'text/markdown',
+          content: post.body_md,
+          contentDigest: createContentDigest(post.body_md),
+        },
+      }
+
+      createNode({
+        ...post,
+        body___NODE: bodyNode.id,
+        relative_category: post.category.replace(new RegExp(`${baseCategory}/?`), ''),
+        id: nodeId,
+        children: [],
+        parent: null,
         internal: {
           type: 'EsaPost',
           contentDigest,
         }
       })
+      createNode(bodyNode)
     })
 
     next_page = body.next_page
