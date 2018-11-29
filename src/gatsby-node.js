@@ -1,4 +1,4 @@
-import Frisbee from 'frisbee'
+import axios from 'axios'
 import crypto from 'crypto'
 
 const createContentDigest = obj =>
@@ -26,22 +26,26 @@ exports.sourceNodes = async ({
 
   const { createNode } = boundActionCreators
 
-  const api = new Frisbee({
-    baseURI: 'https://api.esa.io'
+  const client = axios.create({
+    baseURL: 'https://api.esa.io/v1',
+  })
+  client.interceptors.request.use((config) => {
+    config.headers.Authorization = `Bearer ${accessToken}`
+    return config
   })
 
   let next_page = 1
   while (next_page) {
-    const {
-      body
-    } = await api.jwt(accessToken).get(`/v1/teams/${teamName}/posts`, {
-      body: {
+    const { data } = await client.request({
+      method: 'get',
+      url: `/teams/${teamName}/posts`,
+      params: {
         q,
         page: next_page
       }
     })
 
-    body.posts.forEach(post => {
+    data.posts.forEach(post => {
       const contentDigest = createContentDigest(post)
 
       const nodeId = createNodeId(`EsaPost${post.number}`)
@@ -73,7 +77,7 @@ exports.sourceNodes = async ({
       createNode(bodyNode)
     })
 
-    next_page = body.next_page
+    next_page = data.next_page
   }
 
   return
