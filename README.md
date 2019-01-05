@@ -22,7 +22,7 @@ module.exports = {
         accessToken: `YOUR_PERSONAL_ACCESS_TOKEN`,
         teamName: `YOUR_TEAM_NAME`,
         // Search queary (optional)
-        // See :y https://docs.esa.io/posts/104
+        // See docs: https://docs.esa.io/posts/104
         // Example : 'in:public'  or 'wip:false in:public'
         q: '',
         // Relative Category (optional)
