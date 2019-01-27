@@ -65,7 +65,7 @@ exports.sourceNodes = async ({
       createNode({
         ...post,
         body___NODE: bodyNode.id,
-        relative_category: post.category.replace(new RegExp(`${baseCategory}/?`), ''),
+        relative_category: (post.category || '').replace(new RegExp(`${baseCategory}/?`), ''),
         id: nodeId,
         children: [],
         parent: null,
