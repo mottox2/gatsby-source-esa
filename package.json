@@ -25,7 +25,7 @@
     "@babel/preset-env": "7.1.0"
   },
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.21.1"
   },
   "homepage": "https://github.com/mottox2/gatsby-source-esa"
 }
