@@ -8,7 +8,7 @@ const createContentDigest = obj =>
     .digest(`hex`)
 
 exports.sourceNodes = async ({
-  boundActionCreators,
+  actions,
   createNodeId
 }, {
   accessToken,
@@ -24,7 +24,7 @@ exports.sourceNodes = async ({
     throw 'You need to set an teamName.'
   }
 
-  const { createNode } = boundActionCreators
+  const { createNode } = actions;
 
   const client = axios.create({
     baseURL: 'https://api.esa.io/v1',
